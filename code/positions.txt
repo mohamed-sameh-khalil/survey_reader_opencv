@@ -1,0 +1,51 @@
+(0, (1268.0643882368704, 241.3160033945241), 'male')
+(1, (433.06207927021075, 323.33645276292333), 'summer')
+(2, (867.0484429065743, 404.3137254901961), 'manf')    
+(3, (1302.034806542938, 923.2932709447416), 'neutral') 
+(4, (1001.0620792702107, 965.3228163992869), 'strongly agree')
+(5, (1302.0370792702106, 1005.2909982174688), 'neutral')
+(6, (1101.0484429065743, 1044.313725490196), 'strongly agree')
+(7, (1001.0484429065743, 1084.313725490196), 'agree')
+(8, (1102.0484429065743, 1205.313725490196), 'disagree')
+(9, (1402.0484429065743, 1245.313725490196), 'disagree')
+(10, (1303.0552610883926, 1284.3205436720143), 'disagree')
+(11, (1102.041624724756, 1324.338725490196), 'agree')
+(12, (1303.0484429065743, 1363.288725490196), 'agree')
+(13, (1102.0848893758227, 1403.3342266291481), 'strongly agree')
+(14, (1102.0484429065743, 1521.313725490196), 'neutral')
+(15, (1002.0484429065743, 1562.313725490196), 'strongly agree')
+(16, (1303.0484429065743, 1602.313725490196), 'agree')
+(17, (1203.014274341654, 1723.293224351244), 'strongly agree')
+(18, (1003.0552766195583, 1764.3433382464602), 'disagree')
+(19, (1204.0552766195583, 1842.313725490196), 'strongly agree')
+(20, (1004.0484429065743, 1960.313725490196), 'neutral')
+(21, (1205.0234429065742, 2001.3205436720143), 'agree')
+
+position analyzer
+
+{240 : ("Gender", {1200 : "Male", 1270 : "Female"} ),
+323 : ("Semester", {966 : "Summer", 433 : "Fall", 700 : "Spring" } ),
+404 : ("Major", {867 : "ERGY", 1136 : "MANF", 1000 : "COMM", 733 : "CESS", 600 : "BLDG", 466 : "ENVR", 332 : "MCTA" } ),
+444	: ("Major", { 733 : "HAUD", 600 : "CISE", 466 : "MATL", 332 : "LAAR" } ),
+913 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+965 : ("Q2", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1003 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1044 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1084 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1205 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1245 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1284 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1324 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1361 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1403 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1521 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1562 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1602 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1723 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1764 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1842 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+1960 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} ),
+2001 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Agree"} )}
+
+
+
