@@ -60,8 +60,6 @@ def getRotationAngle(point, angle):
     x1 = point[0]
     y1 = point[1]
     x2 = x1 * math.cos(math.radians(angle)) - x1 * math.sin(math.radians(angle))
-    # print(x1)
-    # print(x2)
     if x2 > 500:
         return angle + 180
     return angle
@@ -81,7 +79,6 @@ def seperateSquares(squares):
     horiz = []
     for i,c in enumerate(cc[2]):
         if (c[cv2.CC_STAT_AREA] > 200 and c[cv2.CC_STAT_AREA] < 10000):
-            # squares = cv2.putText(squares,"b", (c[cv2.CC_STAT_LEFT], c[cv2.CC_STAT_TOP]) ,cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2)
             if(c[cv2.CC_STAT_AREA] < 400):
                 vert.append(cc[3][i])
             else:
@@ -96,7 +93,10 @@ def getCirclesCentroids(circles):
     cc = cv2.connectedComponentsWithStats(circles)
     centers = []
     for i,c in enumerate(cc[2]):
-        if (c[cv2.CC_STAT_AREA] > 100 and c[cv2.CC_STAT_AREA] < 10000):
+        # TODO make this part prone to scale
+        if (c[cv2.CC_STAT_AREA] > 100 and c[cv2.CC_STAT_AREA] < 10000)\
+                and (c[cv2.CC_STAT_LEFT] > 200 and c[cv2.CC_STAT_LEFT] < 1600)\
+                and (c[cv2.CC_STAT_TOP] > 150 and c[cv2.CC_STAT_TOP] < 2200): 
             centers.append(tuple(cc[3][i]))
     return centers
 def markSquares(img, vert, horiz):
@@ -139,17 +139,20 @@ def getAnswer(cc): # this function takes the centers after adjusting according t
 # index = 1
 
 if __name__ == "__main__":
-    for num in range(1, 11):
+    for num in range(11, 120):
         name = "samples/test_sample" + str(num) + ".jpg"
         outname = "samples/test_sample" + str(num) + "_out.jpg"
         img = cv2.imread(name,0)
-
+        if img is None : break
         circles, squares = seperateSquaresAndCircles(img) 
         horiz, vert = seperateSquares(squares)
         angle = fixRotation(vert)
 
         img = rotateImage(img,angle)
         circles, squares = seperateSquaresAndCircles(img)
+        # cv2.imwrite("tmp1.jpg",circles)
+        # cv2.imwrite("tmp2.jpg",squares)
+        # exit()
         cc = getCirclesCentroids(circles)
         horiz, vert = seperateSquares(squares)
         yref = horiz[0][1]
@@ -164,9 +167,6 @@ if __name__ == "__main__":
             img = cv2.putText(img,text,(25,int(c[1]) + 65),cv2.FONT_HERSHEY_DUPLEX,1,0,thickness=2)
         scale = 3
         img = cv2.resize(img,(img.shape[1] // scale,img.shape[0] // scale))
-        # print(img)
         cv2.imwrite(outname,img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
 
 
