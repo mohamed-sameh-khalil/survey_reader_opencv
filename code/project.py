@@ -66,9 +66,16 @@ def getRotationAngle(point, angle):
 
 #return 2 images one with only circles and one with only squares
 def seperateSquaresAndCircles(img):
+    #this mask are for cleaning noise around circle
+    cmask = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5)) 
+    # threshhold image and then open to keep only circles
+    circles = cv2.threshold(img,60,255,cv2.THRESH_BINARY_INV)[1]
+    circles = cv2.erode(circles,cmask)
+    circles = cv2.dilate(circles,cmask)
+    #those masks are for cleaning noise around squares 
     mask = cv2.getStructuringElement(cv2.MORPH_CROSS,(9,9))
     mask2 = cv2.getStructuringElement(cv2.MORPH_RECT,(9,9))
-    circles = cv2.threshold(img,1,255,cv2.THRESH_BINARY_INV)[1]
+    
     squares = cv2.threshold(img,100,255,cv2.THRESH_BINARY_INV)[1] - circles
     squares = cv2.erode(squares,mask)
     squares = cv2.dilate(squares,mask2)
@@ -139,7 +146,7 @@ def getAnswer(cc): # this function takes the centers after adjusting according t
 # index = 1
 
 if __name__ == "__main__":
-    for num in range(11, 120):
+    for num in range(1, 120):
         name = "samples/test_sample" + str(num) + ".jpg"
         outname = "samples/test_sample" + str(num) + "_out.jpg"
         img = cv2.imread(name,0)
