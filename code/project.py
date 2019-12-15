@@ -105,7 +105,6 @@ if __name__ == "__main__":
 
         # opening the text file
         txtfilename = "samples/test_sample" + str(num) + "_out.txt"
-        txtfile = open(txtfilename, "w")
 
         # if we reach the end of the files break
         img = cv2.imread(name,0)
@@ -139,6 +138,7 @@ if __name__ == "__main__":
         
         # for each relative position try to guess the question from Y-component of the circle and the answer from the 
         # X-component of the circle
+        txtfile = open(txtfilename, "w")
         result = []
         for c in locs:
             text = getAnswer(c)
