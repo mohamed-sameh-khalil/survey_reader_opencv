@@ -1,54 +1,9 @@
 import math
 import numpy as np
 import cv2
-ans = ["male",
-"summer",
-"manf",
-"neutral",
-"strongly agree",
-"neutral",
-"strongly agree",
-"agree",
-"disagree",
-"disagree",
-"disagree",
-"agree",
-"agree",
-"strongly agree",
-"neutral",
-"strongly agree",
-"agree",
-"strongly agree",
-"disagree",
-"strongly agree",
-"neutral",
-"agree"]
+from CONST import ans, analyzer
 
-analyzer = {240 : ("Gender", {1200 : "Male", 1270 : "Female"} ),
-323 : ("Semester", {966 : "Summer", 433 : "Fall", 700 : "Spring" } ),
-404 : ("Major", {867 : "ERGY", 1136 : "MANF", 1000 : "COMM", 733 : "CESS", 600 : "BLDG", 466 : "ENVR", 332 : "MCTA" } ),
-444	: ("Major", { 733 : "HAUD", 600 : "CISE", 466 : "MATL", 332 : "LAAR" } ),
-913 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-965 : ("Q2", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1003 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1044 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1084 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1084 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1205 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1245 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1284 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1324 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1361 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1403 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1521 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1562 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1602 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1723 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1764 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1842 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-1960 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} ),
-2001 : ("Q1", {1000 : "Strongly Agree", 1100: "Agree", 1200 : "Neutral", 1300 : "Disagree", 1400 : "Strongly Disagree"} )}
-
+# given an angle and an image, this function will return a the image rotated by this angle
 def rotateImage(image, angle): # source: https://stackoverflow.com/questions/9041681/opencv-python-rotate-image-by-x-degrees-around-specific-point
     # rotation is clockwise
     image_center = tuple(np.array(image.shape[1::-1]) / 2)
@@ -56,13 +11,6 @@ def rotateImage(image, angle): # source: https://stackoverflow.com/questions/904
     result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
     return result
 
-def getRotationAngle(point, angle):
-    x1 = point[0]
-    y1 = point[1]
-    x2 = x1 * math.cos(math.radians(angle)) - x1 * math.sin(math.radians(angle))
-    if x2 > 500:
-        return angle + 180
-    return angle
 
 #return 2 images one with only circles and one with only squares
 def seperateSquaresAndCircles(img):
@@ -80,6 +28,10 @@ def seperateSquaresAndCircles(img):
     squares = cv2.erode(squares,mask)
     squares = cv2.dilate(squares,mask2)
     return circles,squares
+
+# returns 2 lists one with the top 3 horizontal squares and one with 
+# the multiple vertical squares
+# separation assumes that top right squares are larger in size
 def seperateSquares(squares):
     cc = cv2.connectedComponentsWithStats(squares)
     vert = []
@@ -91,6 +43,8 @@ def seperateSquares(squares):
             else:
                 horiz.append(cc[3][i])
     return horiz, vert
+
+# returns a list with the centroids of the circles(choices)
 def getCirclesCentroids(circles):
     # I added the opening because some very short white line was missing up my components
     mask = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)) 
@@ -100,20 +54,14 @@ def getCirclesCentroids(circles):
     cc = cv2.connectedComponentsWithStats(circles)
     centers = []
     for i,c in enumerate(cc[2]):
-        # TODO make this part prone to scale
+        # TODO make this part prune to scale
         if (c[cv2.CC_STAT_AREA] > 100 and c[cv2.CC_STAT_AREA] < 10000)\
                 and (c[cv2.CC_STAT_LEFT] > 200 and c[cv2.CC_STAT_LEFT] < 1600)\
                 and (c[cv2.CC_STAT_TOP] > 150 and c[cv2.CC_STAT_TOP] < 2200): 
             centers.append(tuple(cc[3][i]))
     return centers
-def markSquares(img, vert, horiz):
-    squares = img.copy()
-    for i in vert:
-        squares = cv2.circle(squares,tuple(map(int,i)),9,255)
-    for i in horiz:
-        squares = cv2.circle(squares,tuple(map(int,i)),20,255)
-    return squares
 
+# this function calculates rotation angle and decided what is the best rotation angle to fix this rotations
 def fixRotation(vert):
     angle =(math.degrees(math.atan((vert[0][1] - vert[-1][1]) / (vert[0][0] - vert[-1][0]))))# angle with the horiz axis
     if angle < 0 : angle = 270 - angle
@@ -125,6 +73,7 @@ def fixRotation(vert):
         angle += 180
     return -angle
 
+# compare with all choices and chooses the closest choice from a list of guesses
 def getBestGuess(val, guessbook):
     min = 1000
     best = 0
@@ -134,12 +83,15 @@ def getBestGuess(val, guessbook):
             best = i
     return guessbook[best]
 
-def getAnswer(cc): # this function takes the centers after adjusting according to the reference
+# given the center of a choice thi function returns a string with question title and its answer
+def getAnswer(cc): 
     x = cc[0]
     y = cc[1]
-    stop = False
+    # guess the question
     i = getBestGuess(y,analyzer)
+    # i[0] is the question title, i[1] is list of possible answers
     st = i[0]
+    # guess the answer
     i = getBestGuess(x,i[1])
     st += ": " + i
     return st
@@ -147,31 +99,52 @@ def getAnswer(cc): # this function takes the centers after adjusting according t
 
 if __name__ == "__main__":
     for num in range(1, 120):
+        # assuming all file names are test_sample#.jpg
         name = "samples/test_sample" + str(num) + ".jpg"
         outname = "samples/test_sample" + str(num) + "_out.jpg"
+
+        # opening the text file
+        txtfilename = "samples/test_sample" + str(num) + "_out.txt"
+        txtfile = open(txtfilename, "w")
+
+        # if we reach the end of the files break
         img = cv2.imread(name,0)
         if img is None : break
-        circles, squares = seperateSquaresAndCircles(img) 
+
+        # get an image with the squares seperated from and another with the small black squares
+        circles, squares = seperateSquaresAndCircles(img)
+        # seperate the 3 horizontal squares from the rest of the vertical square
         horiz, vert = seperateSquares(squares)
+        # from the vertical squares try to guess the correct rotation angle to straighten out the image
         angle = fixRotation(vert)
 
+        # rotate the original image by the correctly guessed image
         img = rotateImage(img,angle)
+
+        # separate circles and squares again and separate horizontal and vertical squares
         circles, squares = seperateSquaresAndCircles(img)
-        # cv2.imwrite("tmp1.jpg",circles)
-        # cv2.imwrite("tmp2.jpg",squares)
-        # exit()
-        cc = getCirclesCentroids(circles)
         horiz, vert = seperateSquares(squares)
+        # get a list of centroids of each circle(choice)
+        cc = getCirclesCentroids(circles)
+
+        # take any the squares as references for unwanted translations in the horizontal and vertical directions
         yref = horiz[0][1]
         xref = vert[0][0]
+
+        # save the relative position of each circle
         locs = []
         for i,c in enumerate(cc):
             pos = c[0] - xref, c[1] - yref
             locs.append(pos)
+        
+        # for each relative position try to guess the question from Y-component of the circle and the answer from the 
+        # X-component of the circle
         result = []
         for c in locs:
             text = getAnswer(c)
+            txtfile.write(text + "\n")
             img = cv2.putText(img,text,(25,int(c[1]) + 65),cv2.FONT_HERSHEY_DUPLEX,1,0,thickness=2)
+        txtfile.close()
         scale = 3
         img = cv2.resize(img,(img.shape[1] // scale,img.shape[0] // scale))
         cv2.imwrite(outname,img)

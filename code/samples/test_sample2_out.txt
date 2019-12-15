@@ -1,0 +1,22 @@
+Gender: Male
+Semester: Summer
+Major: MANF
+Q1: Neutral
+Q2: Strongly Agree
+Q3: Neutral
+Q4: Strongly Agree
+Q5: Agree
+Q6: Disagree
+Q7: Disagree
+Q8: Disagree
+Q9: Agree
+Q10: Agree
+Q11: Strongly Agree
+Q12: Neutral
+Q13: Strongly Agree
+Q14: Agree
+Q15: Strongly Agree
+Q16: Disagree
+Q17: Strongly Agree
+Q18: Neutral
+Q19: Agree

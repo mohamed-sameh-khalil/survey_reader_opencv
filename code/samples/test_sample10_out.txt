@@ -1,0 +1,22 @@
+Gender: Female
+Semester: Summer
+Major: ERGY
+Q1: Strongly Disagree
+Q2: Strongly Agree
+Q3: Disagree
+Q4: Agree
+Q5: Disagree
+Q6: Agree
+Q7: Disagree
+Q8: Strongly Agree
+Q9: Neutral
+Q10: Agree
+Q11: Neutral
+Q12: Neutral
+Q13: Agree
+Q14: Strongly Agree
+Q15: Disagree
+Q16: Neutral
+Q17: Strongly Agree
+Q18: Disagree
+Q19: Strongly Agree

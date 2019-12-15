@@ -1,0 +1,22 @@
+Gender: Male
+Semester: Spring
+Major: COMM
+Q1: Strongly Agree
+Q2: Strongly Agree
+Q3: Agree
+Q4: Strongly Agree
+Q5: Agree
+Q6: Disagree
+Q7: Neutral
+Q8: Disagree
+Q9: Neutral
+Q10: Agree
+Q11: Agree
+Q12: Neutral
+Q13: Neutral
+Q14: Neutral
+Q15: Agree
+Q16: Neutral
+Q17: Agree
+Q18: Neutral
+Q19: Strongly Agree

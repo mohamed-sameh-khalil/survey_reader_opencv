@@ -1,0 +1,22 @@
+Gender: Female
+Semester: Fall
+Major: BLDG
+Q1: Disagree
+Q2: Neutral
+Q3: Disagree
+Q4: Agree
+Q5: Neutral
+Q6: Strongly Agree
+Q7: Strongly Disagree
+Q8: Disagree
+Q9: Strongly Agree
+Q10: Disagree
+Q11: Agree
+Q12: Agree
+Q13: Strongly Agree
+Q14: Neutral
+Q15: Neutral
+Q16: Agree
+Q17: Neutral
+Q18: Strongly Agree
+Q19: Agree

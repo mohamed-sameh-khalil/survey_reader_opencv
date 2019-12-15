@@ -1,0 +1,22 @@
+Gender: Male
+Semester: Fall
+Major: MATL
+Q1: Strongly Agree
+Q2: Strongly Agree
+Q3: Strongly Agree
+Q4: Strongly Agree
+Q5: Strongly Agree
+Q6: Disagree
+Q7: Disagree
+Q8: Disagree
+Q9: Disagree
+Q10: Disagree
+Q11: Disagree
+Q12: Agree
+Q13: Agree
+Q14: Agree
+Q15: Disagree
+Q16: Disagree
+Q17: Disagree
+Q18: Agree
+Q19: Agree

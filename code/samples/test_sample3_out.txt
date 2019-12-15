@@ -1,0 +1,22 @@
+Gender: Male
+Semester: Summer
+Major: HAUD
+Q1: Agree
+Q2: Strongly Agree
+Q3: Neutral
+Q4: Disagree
+Q5: Agree
+Q6: Disagree
+Q7: Disagree
+Q8: Disagree
+Q9: Agree
+Q10: Agree
+Q11: Strongly Agree
+Q12: Agree
+Q13: Strongly Agree
+Q14: Neutral
+Q15: Strongly Agree
+Q16: Disagree
+Q17: Neutral
+Q18: Strongly Agree
+Q19: Agree
