@@ -5,11 +5,39 @@ from CONST import ans, analyzer
 
 # given an angle and an image, this function will return a the image rotated by this angle
 def rotateImage(image, angle): # source: https://stackoverflow.com/questions/9041681/opencv-python-rotate-image-by-x-degrees-around-specific-point
+    # Version 1
+    # # rotation is clockwise
+    # image_center = tuple(np.array(image.shape[1::-1]) / 2)
+    # rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
+    # result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
+    # return result
+
+    # Version 2
+    # source: https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/
     # rotation is clockwise
-    image_center = tuple(np.array(image.shape[1::-1]) / 2)
-    rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
-    result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
-    return result
+    # grab the dimensions of the image and then determine the
+    # center
+    (h, w) = image.shape[:2]
+    (cX, cY) = (w // 2, h // 2)
+
+    # grab the rotation matrix (applying the negative of the
+    # angle to rotate clockwise), then grab the sine and cosine
+    # (i.e., the rotation components of the matrix)
+    M = cv2.getRotationMatrix2D((cX, cY), angle, 1.0)
+    cos = np.abs(M[0, 0])
+    sin = np.abs(M[0, 1])
+
+    # compute the new bounding dimensions of the image
+    nW = int((h * sin) + (w * cos))
+    nH = int((h * cos) + (w * sin))
+
+    # adjust the rotation matrix to take into account translation
+    M[0, 2] += (nW / 2) - cX
+    M[1, 2] += (nH / 2) - cY
+
+    # perform the actual rotation and return the image
+    return cv2.warpAffine(image, M, (nW, nH))
+
 
 
 #return 2 images one with only circles and one with only squares
@@ -98,7 +126,7 @@ def getAnswer(cc):
 # index = 1
 
 if __name__ == "__main__":
-    for num in range(1, 120):
+    for num in range(12, 120):
         # assuming all file names are test_sample#.jpg
         name = "samples/test_sample" + str(num) + ".jpg"
         outname = "samples/test_sample" + str(num) + "_out.jpg"
